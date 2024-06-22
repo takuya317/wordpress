@@ -1,0 +1,97 @@
+@use "global" as *;
+
+
+.btn {
+    position: relative;
+    display: inline-block;
+    font-size: rem(14);
+    font-family: $base-font-family;
+    font-weight: $regular;
+    color: $white;
+    width: rem(202);
+    background-color: $green;
+    line-height: 1;
+    padding: rem(19) rem(88) rem(19) rem(40);
+    border: rem(1) solid $green;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+
+
+// ボタンの影
+.btn::before {
+    position: absolute;
+    content: '';
+    border: rem(1) solid $green;
+    width: 100%;
+    height: rem(54);
+    left: rem(4);
+    top: rem(4);
+    z-index: -1;
+}
+
+// ボタンの矢印
+.btn__arrow::before {
+    content: '';
+    /*絶対配置で下線の位置を決める*/
+    position: absolute;
+    bottom: 48%;
+    right: 20%;
+    /*下線の形状*/
+    width: 20%;
+    height: rem(1);
+    background: $white;
+}
+
+.btn__arrow::after {
+    content: '';
+    /*絶対配置で矢印の位置を決める*/
+    position: absolute;
+    bottom: 54%;
+    right: 20%;
+    /*矢印の形状*/
+    width: 4%;
+    height: rem(1);
+    background: $white;
+    transform: rotate(40deg);
+}
+
+// ボタンのアニメーション
+.btn::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    display: block;
+    background-color: $white;
+    z-index: -1;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    color: $green;
+}
+
+.btn:hover::after {
+    width: 100%;
+}
+
+.btn:hover .btn__arrow::after {
+    background-color: $green;
+  }
+
+.btn:hover .btn__arrow::before {
+    background-color: $green;
+  }
+
+
+
+
+
+
+
+
+

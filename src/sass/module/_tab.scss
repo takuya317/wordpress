@@ -1,0 +1,54 @@
+@use "global" as *;
+
+.tab{
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 6.2%;
+    row-gap:rem(16) ;
+    justify-content: center;
+    @include mq("md"){
+    justify-content: left;
+    column-gap: rem(32);
+    }
+}
+
+.tab__item{
+    color: var(--greenaccent, #408F95);
+font-family: "Noto Sans JP";
+font-size: rem(14);
+font-style: normal;
+font-weight: 400;
+text-align: center;
+border: rem(1) solid var(--greenaccent, #408F95);
+width: 46.9%;
+white-space:nowrap ;
+display: inline-block;
+// padding-top: rem(6);
+// padding-bottom: rem(5);
+    background-color: white;
+    height: inherit;
+    @include mq("md"){
+    max-width: rem(162);
+}
+}
+
+.tab__item.is-active{
+    color: var(--White, #FFF);
+    background: var(--greenaccent, #408F95);
+}
+
+.tab__item a{
+    display: block;
+    height: inherit;
+    padding-top: rem(6);
+    padding-bottom: rem(5);
+
+    
+}
+
+.tab__item:hover{
+    color: var(--White, #FFF);
+    background: var(--greenaccent, #408F95);
+    transition: 0.5s;
+}

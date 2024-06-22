@@ -1,0 +1,10 @@
+@use "global" as *;
+
+
+    .sitemap__inner{
+        max-width: rem(400);
+    }
+
+    // .sitemap__fish{
+    //     @include mq("md"){display: none;}
+    // }

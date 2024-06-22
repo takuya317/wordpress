@@ -1,0 +1,56 @@
+@use "global" as *;
+
+.section-header{
+    
+}
+
+.section-header__engtittle{
+    color:black;
+    font-family: "Gotu", sans-serif;
+    font-size: rem(32);
+    font-style: normal;
+    font-weight: 400;
+    line-height: rem(40);
+    text-align: center;
+    @include mq("md"){
+        font-size: rem(40);
+    }
+}
+
+.section-header__jatittle{
+text-align: center;
+font-family: Noto Sans JP;
+font-size: rem(12);
+font-style: normal;
+font-weight: 400;
+line-height: rem(18); /* 150% */
+margin-top: rem(4);
+color: rgba(64, 143, 149, 1);
+@include mq("md"){
+    margin-top: rem(8);
+}
+}
+
+
+.section-header__engtittle::first-letter{
+    color: #408F95;
+    text-transform: uppercase;
+}
+
+.section-header__engtittle--white{
+    @include mq("md"){
+        color: #FFF ;
+        }
+}
+
+.section-header__engtittle--white::first-letter{
+    @include mq("md"){
+        color: #FFF ;
+        }
+}
+
+.section-header__jatittle--white{
+    @include mq("md"){
+        color: #FFF ;
+        }
+}

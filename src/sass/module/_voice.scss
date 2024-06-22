@@ -1,0 +1,64 @@
+@use "global" as *;
+
+.voice{
+    position: relative;
+}
+
+    .voice__inner::before{
+        @include mq("md"){
+        content: "";
+        position: absolute;
+        background-image: url(../images/common/tatu.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        bottom: -11%;
+        right: calc(59% - min(54vw,40rem));
+        z-index: 1;
+        height: rem(162);
+        width: rem(71);
+        }
+    }
+
+    .voice__inner::after{
+        @include mq("md"){
+        content: "";
+        position: absolute;
+        background-image: url(../images/common/sakana2.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        top: -19%;
+        left: calc(51.5% - min(48vw,40rem));
+        z-index: 1;
+        height: rem(138);
+        width: rem(301);
+        }
+    }
+
+    .voice__inner{
+        max-width: rem(600);
+        @include mq("md"){   
+            position: relative;      
+        }
+    }
+
+
+.voice__cards{
+        @include mq("md"){
+            margin-top: rem(34);            
+            }
+}
+
+
+
+
+.voice__btn{
+    margin-top: rem(38);
+    text-align: center;
+    @include mq("md"){
+        margin-top: rem(80);
+      }
+}
+

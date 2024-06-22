@@ -1,0 +1,31 @@
+@use "global" as *;
+
+
+.wpcf7-list-item{
+	margin: 0;
+	display: block;
+}
+
+.wpcf7-submit{
+	
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 22px; /* 157.143% */
+	white-space: nowrap;
+	color: #FFF;
+	font-family: "Noto Sans JP";
+
+}
+
+.wpcf7-spinner{
+	display: none;
+}
+
+.wpcf7 .wpcf7-submit{
+	padding-right: 1rem;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+
+}
