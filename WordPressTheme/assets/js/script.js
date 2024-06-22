@@ -1,7 +1,6 @@
 "use strict";
 
 // ドロワー部分
-jQuery(function ($) {
 $(".js-humburger").click(function () {
   if ($(".js-humburger").hasClass('is-active')) {
     $('.js-humburger').removeClass("is-active");
@@ -23,9 +22,7 @@ $(".js-humburger").click(function () {
     }
   });
 });
-});
 
-jQuery(function ($) {
 // mv部分のスワイパー
 var mv_swiper = new Swiper(".js-mv-swiper", {
   loop: true,
@@ -39,9 +36,7 @@ var mv_swiper = new Swiper(".js-mv-swiper", {
     disableOnInteraction: false
   }
 });
-});
 
-jQuery(function ($) {
 // campaign部分のスワイパー,
 $(function () {
   var swiper = new Swiper('.js-campaign-swiper', {
@@ -71,10 +66,9 @@ $(function () {
     }
   });
 });
-});
+
 // animation 
 
-jQuery(function ($) {
 //要素の取得とスピードの設定
 var box = $(".js-colorbox"),
   speed = 700;
@@ -105,9 +99,7 @@ box.each(function () {
     }
   });
 });
-});
 
-jQuery(function ($) {
 // Topへ戻るボタン
 $(function () {
   var pageTop = $('.js-page-top'); //HTMLのオブジェクト情報を入れる
@@ -131,7 +123,7 @@ $(function () {
     return false;
   });
 });
-});
+
 // informationページのタブ
 jQuery(function ($) {
   $('.js-information-page__item').on('click', function () {
@@ -187,12 +179,10 @@ jQuery(function ($) {
 jQuery(function ($) {
   $('.js-two-colums__year').on('click', function () {
     $(this).toggleClass('is-active');
-    $(this).find('.archive-block__content').slideToggle(); 
-
+    $(this).find('.archive-block__content').slideToggle();
   });
 });
 
-jQuery(function ($) {
 // contact ページ
 $('.js-page-form').submit(function (event) {
   var hasEmptyFields = false; // 空のフィールドがあるかどうかを示すフラグ
@@ -214,5 +204,4 @@ $('.js-page-form').submit(function (event) {
   } else {
     $('.page-contact__error').removeClass('is-active');
   }
-});
 });

@@ -174,7 +174,7 @@ a {
 }
 
 .layout-contact {
-	margin-top: 6.8125rem;
+	margin-top: 4.8125rem;
 }
 
 .layout-contact--reg {
@@ -1917,7 +1917,7 @@ a {
 	text-align: left;
 }
 
-.kutikomi-card__img img{
+.kutikomi-card__img {
 	-o-object-fit: cover;
 	aspect-ratio: 294/218;
 	object-fit: cover;
@@ -2224,7 +2224,7 @@ a {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	background-image: url(../images/common/sankaku.png);
+	background-image: url(./../images/common/sankaku.png);
 	background-position: right 0.5rem top 0.625rem;
 	background-repeat: no-repeat;
 	background-size: 0.75rem;
@@ -2294,7 +2294,7 @@ a {
 	content: "";
 	display: block;
 	height: 1.375rem;
-	left: -12%;
+	left: 0;
 	position: absolute;
 	top: 25%;
 	transform: translateY(-50%);
@@ -2307,7 +2307,7 @@ a {
 	content: "";
 	display: block;
 	height: 0.4375rem;
-	left: -12%;
+	left: 0.7%;
 	margin-top: -0.125rem;
 	opacity: 0;
 	position: absolute;
@@ -2406,7 +2406,7 @@ a {
 	content: "";
 	display: block;
 	height: 0.0625rem;
-	left: 118%;
+	left: 164%;
 	position: absolute;
 	right: 3.0625rem;
 	top: 45%;
@@ -2421,7 +2421,7 @@ a {
 	content: "";
 	display: block;
 	height: 0.0625rem;
-	left: 70%;
+	left: 100%;
 	position: absolute;
 	right: 3.125rem;
 	top: 60%;
@@ -2436,7 +2436,7 @@ a {
 	content: "";
 	display: block;
 	height: 0.0625rem;
-	left: 70%;
+	left: 100%;
 	position: absolute;
 	right: 3.125rem;
 	top: 60%;
@@ -2451,7 +2451,7 @@ a {
 	content: "";
 	display: block;
 	height: 0.0625rem;
-	left: 116%;
+	left: 164%;
 	position: absolute;
 	right: 3.0625rem;
 	top: 45%;
@@ -4703,12 +4703,12 @@ html {
 }
 
 .page-form__privacy input + span::before {
-	left: -75%;
+	left: 17.2%;
 	top: 50%;
 }
 
 .page-form__privacy input + span::after {
-	left: -75%;
+	left: 18%;
 	top: 50%;
 }
 
@@ -5339,47 +5339,5 @@ html {
 
 }
 
-.wpcf7-list-item{
-	margin: 0;
-	display: block;
-}
-
-.wpcf7-submit{
-	
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 22px; /* 157.143% */
-	white-space: nowrap;
-	color: #FFF;
-	font-family: "Noto Sans JP";
-
-}
-
-.wpcf7-spinner{
-	display: none;
-}
-
-.wpcf7 .wpcf7-submit{
-	padding-right: 1rem;
-	padding-top: 0;
-	padding-bottom: 0;
-	padding-left: 0;
-	/* color: red; */
-}
-
-
-.page-form__btn:hover .wpcf7-submit{
-	color: rgb(64, 143, 149);
-}
-
-.wp-pagenavi{
-	display: flex;
-	gap: 0.75rem;
-}
-
-/* .page-form__btn span:hover .wpcf7 .wpcf7-submit{
-	color: rgb(64, 143, 149);
-} */
 
 /*# sourceMappingURL=style.css.map */
