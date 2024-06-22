@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-
 <?php 
 $campaign=esc_url(home_url('/campaign/'));
 $contact=esc_url(home_url('/contact/'));
