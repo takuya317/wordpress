@@ -10,11 +10,7 @@
   </section>
   <div class="breadcrumb layout-breadcrumb">
     <div class="breadcrumb__inner inner">
-      <?php
-      if (function_exists('bcn_display')) {
-        bcn_display();
-      }
-      ?>
+    <?php get_template_part( 'template-parts/bread' ); ?>
     </div>
   </div>
   <section class="two-colums layout-two-colums-detail">
@@ -24,7 +20,7 @@
         <div class="two-colums__blog-card singleblog-card">
         <?php if(have_posts()): ?>
             <?php while(have_posts()):the_post(); ?>
-          <div class="singleblog-card__date"><?php the_date(); ?></div>
+          <time class="singleblog-card__date" datetime="<?php the_time('c'); ?>"><?php the_time('Y.n/d'); ?></time>
           <h2 class="singleblog-card__tittle"><?php the_title(); ?></h2>
           <div class="singleblog-card__imgbig">
             <?php if(get_the_post_thumbnail()): ?>

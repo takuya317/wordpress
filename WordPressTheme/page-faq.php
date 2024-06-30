@@ -10,11 +10,7 @@
   </section>
   <div class="breadcrumb layout-breadcrumb">
     <div class="breadcrumb__inner inner">
-      <?php
-      if (function_exists('bcn_display')) {
-        bcn_display();
-      }
-      ?>
+    <?php get_template_part( 'template-parts/bread' ); ?>
     </div>
   </div>
    <section class="faq layout-faq">
@@ -25,18 +21,20 @@
           <?php 
           $question=SCF::get('question');
           $answer=SCF::get('answer');
-            foreach ($question as $faq) {
-                if($faq){
-                echo '<li class="faq-lists__item faq-list">';
-                echo '<h2 class="faq-list__question js-faq-list-question">' . $faq . '</h2>';
-                echo '<p class="faq-list__answer">';
-                $key = array_search($faq, $question);
-                echo $answer[$key];
-                echo '</p>';
-                echo '</li>';  
-                }
-              }
           ?>
+          <?php foreach ($question as $faq):?>
+            <?php $key = array_search($faq, $question); ?>
+             <?php if(!empty($faq) && !empty($answer[$key])): ?>
+              <li class="faq-lists__item faq-list">
+                <h2 class="faq-list__question js-faq-list-question">
+                  <?php echo $faq; ?>
+                </h2>
+                <p class="faq-list__answer">
+                  <?php echo $answer[$key]; ?>
+                </p>
+              </li>
+             <?php endif; ?>
+          <?php endforeach; ?>      
         <?php endwhile; ?>
         <?php endif; ?>  
       </ul>

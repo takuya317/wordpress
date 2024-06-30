@@ -10,11 +10,7 @@
   </section>
   <div class="breadcrumb layout-breadcrumb">
     <div class="breadcrumb__inner inner">
-      <?php
-        if (function_exists('bcn_display')) {
-          bcn_display();
-        }
-      ?>
+    <?php get_template_part( 'template-parts/bread' ); ?>
     </div>
   </div>
   <section class="about-page about-page-layout">
@@ -48,24 +44,20 @@
         <div class="gallery__items">
         <?php if(have_posts()): ?>
         <?php while(have_posts()):the_post(); ?>       
-          <?php 
-          $imges=SCF::get('img');
-          foreach ($imges as $img) {
-            $img_url=wp_get_attachment_url($img);
-            if($img){
-              echo '<div class="gallery__item">';
-              echo '<img src="'.$img_url.'" alt="" class="js-modal-open">';
-              echo '</div>';
-            }
-          }
-          ?>
+          <?php $imges = SCF::get('img');?>
+          <?php foreach ($imges as $img): ?>
+            <?php $img_url=wp_get_attachment_url($img); ?>
+            <?php if($img): ?>
+              <div class="gallery__item"><img class="js-modal-open" src="<?php echo $img_url ?>" alt=""></div>
+            <?php endif; ?>
+          <?php endforeach; ?>
         <?php endwhile; ?>
         <?php endif; ?>  
         </div>
       </div>
     </div>
     <div class="gallery__modal">
-      <div class="gallery__img"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/contact1.jpg" alt=""></div>
+      <div class="gallery__img"><img src="<?php echo $img_url ?>" alt=""></div>
     </div>
   </section>
 <?php get_footer(); ?>

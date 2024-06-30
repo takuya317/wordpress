@@ -6,87 +6,43 @@
         $top=esc_url(home_url('/'));
         $price=esc_url(home_url('/price/'));
 ?>
+        <?php 
+          $pc_img=SCF::get('pc_img');
+          $pc_img_urls = array_map('wp_get_attachment_url', $pc_img);
+          $sp_img=SCF::get('sp_img');
+          $sp_img_urls = array_map('wp_get_attachment_url', $sp_img);
+        ?>
+  
 <?php get_header(); ?>
   <section class="mv">
     <div class="mv__inner">
       <div class="mv__swiper js-mv-swiper swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <picture class="mv__img">
-              <?php if(get_field('pc_1')): ?>
-                <source srcset="<?php the_field('pc_1'); ?>" media="(min-width: 768px)">
-                <?php  if(get_field('sp_1')):?>
-                <img src="<?php the_field('sp_1'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mvv.jpg" alt="亀が泳いでいる"> 
-                <?php endif; ?>       
-              <?php else: ?>
-                <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/kamee-pc.jpg" media="(min-width: 768px)">
-                <?php  if(get_field('sp_1')):?>
-                <img src="<?php the_field('sp_1'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mvv.jpg" alt="亀が泳いでいる"> 
-                <?php endif; ?>      
-              <?php endif; ?>
-            </picture>
-          </div>
-          <div class="swiper-slide">
-            <picture class="mv__img">
-              <?php if(get_field('pc_2')): ?>
-                <source srcset="<?php the_field('pc_2'); ?>" media="(min-width: 768px)">
-                <?php  if(get_field('sp_2')):?>
-                <img src="<?php the_field('sp_2'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mv2.jpg" alt="亀が水面付近で泳いでいる"> 
-                <?php endif; ?>       
-              <?php else: ?>
-                <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/kame-pc.jpg" media="(min-width: 768px)">
-                <?php  if(get_field('sp_2')):?>
-                <img src="<?php the_field('sp_2'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mv2.jpg" alt="亀が水面付近で泳いでいる"> 
-                <?php endif; ?>      
-              <?php endif; ?>
-            </picture>
-          </div>
-          <div class="swiper-slide">
-            <picture class="mv__img">
-              <?php if(get_field('pc_3')): ?>
-                <source srcset="<?php the_field('pc_3'); ?>" media="(min-width: 768px)">
-                <?php  if(get_field('sp_3')):?>
-                <img src="<?php the_field('sp_3'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mv3.jpg" alt="海上に船が一隻"> 
-                <?php endif; ?>       
-              <?php else: ?>
-                <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/sima-pc.jpg" media="(min-width: 768px)">
-                <?php  if(get_field('sp_3')):?>
-                <img src="<?php the_field('sp_3'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mv3.jpg" alt="海上に船が一隻"> 
-                <?php endif; ?>    
-              <?php endif; ?>
-            </picture>
-          </div>
-          <div class="swiper-slide">
-            <picture class="mv__img">
-              <?php if(get_field('pc_4')): ?>
-                <source srcset="<?php the_field('pc_4'); ?>" media="(min-width: 768px)">
-                <?php  if(get_field('sp_4')):?>
-                <img src="<?php the_field('sp_4'); ?>" alt="">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mv4.jpg" alt="砂浜"> 
-                <?php endif; ?>       
-              <?php else: ?>
-                <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/beach.jpg" media="(min-width: 768px)">
-                <?php  if(get_field('sp_4')):?>
-                <img src="<?php the_field('sp_4'); ?>" alt="砂浜">
-                <?php else: ?>
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mv4.jpg" alt=""> 
-                <?php endif; ?>          
-              <?php endif; ?>
-            </picture>
-          </div>
+          <?php 
+          foreach ($pc_img_urls as $pc_img_url):
+           $key = array_search($pc_img_url, $pc_img_urls); 
+           if (!empty($pc_img_url) && !empty($sp_img_urls[$key])):
+            ?>
+            <div class="swiper-slide">
+              <picture class="mv__img">
+                <source srcset="<?php echo $pc_img_url; ?>" media="(min-width: 768px)">
+                <img src="<?php echo $sp_img_urls[$key]; ?>" alt="MVの画像"> 
+              </picture>
+            </div>
+            <?php elseif (!empty($pc_img_url) && empty($sp_img_urls[$key])): ?>
+            <div class="swiper-slide">
+              <picture class="mv__img">
+                <img src="<?php echo $pc_img_url; ?>" alt="MVの画像"> 
+              </picture>
+            </div>
+            <?php elseif (empty($pc_img_url) && !empty($sp_img_urls[$key])): ?>
+            <div class="swiper-slide">
+              <picture class="mv__img">
+                <img src="<?php echo $sp_img_urls[$key]; ?>" alt="MVの画像"> 
+              </picture>
+            </div>
+            <?php endif; ?>
+          <?php endforeach; ?>
         </div>
       </div>  
       <div class="mv__header">
@@ -130,13 +86,12 @@
             </div>
             <div class="campaign-card__inner">
             <?php
-              $terms = get_the_terms(get_the_ID(), 'campaign_category');
-              if ($terms) {
-                  foreach ($terms as $term) {
-                      echo '<p class="campaign-card__topic">' . $term->name . '</p>';
-                      }
-                }
-            ?>
+              $terms = get_the_terms(get_the_ID(), 'campaign_category');?>
+              <?php if ($terms):  ?>
+                <?php foreach ($terms as $term):  ?>
+                   <p class="campaign-card__topic"><?php  echo $term->name  ?></p>
+                <?php endforeach; ?>
+              <?php endif; ?>
               <p class="campaign-card__tittle"><?php the_title(); ?></p>
               <p class="campaign-card__text">全部コミコミ(お一人様)</p>
               <div class="campaign-card__wrap">
@@ -238,10 +193,10 @@
             <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/blog1.jpg" alt="no image">
             <?php endif;?> 
           </div>
-          <time class="blog-card__date" datetime="2023-11-17"><?php the_time('Y.n/d'); ?></time>
+          <time class="blog-card__date" datetime="<?php the_time('c'); ?>"><?php the_time('Y.n/d'); ?></time>
           <p class="blog-card__tittle"><?php the_title(); ?></p>
           <p class="blog-card__text">
-          <?php echo wp_trim_words( get_the_content(), 85, '' ); ?>
+          <?php echo wp_trim_words( get_the_content(), 85, '...' ); ?>
           </p>
         </a>
         <?php endwhile; ?>
@@ -268,7 +223,7 @@
           'posts_per_page' => 2, 
         );
         $sub_query_voice = new WP_Query($args_voice);
-        ?>
+      ?>
       <?php if($sub_query_voice-> have_posts()): ?>
         <?php while($sub_query_voice-> have_posts()):$sub_query_voice-> the_post(); ?>
         <div class="cards__item voice-card">
@@ -276,14 +231,12 @@
             <div class="voice-card__inner">
               <div class="voice-card__textes">
                 <p class="voice-card__text1"><?php the_field('age'); ?></p>
-                  <?php
-                      $voice_terms = get_the_terms(get_the_ID(), 'voice_category');
-                      if ($voice_terms) {
-                          foreach ($voice_terms as $term) {
-                              echo '<p class="voice-card__text2">' . $term->name . '</p>';
-                              }
-                        }
-                    ?>
+                  <?php $voice_terms = get_the_terms(get_the_ID(), 'voice_category'); ?>
+                  <?php if ($voice_terms):  ?>
+                    <?php foreach ($voice_terms as $term):  ?>
+                      <p class="voice-card__text2"><?php  echo $term->name  ?></p>
+                    <?php endforeach; ?>
+                  <?php endif; ?>    
               </div>
               <h2 class="voice-card__text3"><?php the_title(); ?></h2>
             </div>
@@ -322,82 +275,56 @@
           <img  src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price1.jpg" alt="ウミガメ" style="opacity: 1;">
         </picture>
         <div class="price__container">
-        <?php 
-        $args_price = array(
-          'post_type' => 'page',
-          'name' => 'price', 
-        );
-        $sub_query_price = new WP_Query($args_price);
-        ?>
-          <?php if($sub_query_price-> have_posts()): ?>
-          <?php while($sub_query_price-> have_posts()):$sub_query_price-> the_post(); ?>
           <?php 
-           $prices=SCF::get('prices');
-           $contents=SCF::get('contents');
-           foreach($prices as $price_index => $price_order){
-            $content_order = $contents[$price_index];
-            echo '<div  class="price__textes">
-                  <h3 class="price__topic">';
-            if($price_index==0){
-              echo 'ライセンス講習';}
-              elseif($price_index==1){
-              echo '体験ダイビング';
-              }
-              elseif($price_index==2){
-                echo 'ファンダイビング';
-                }
-                elseif($price_index==3){
-                  echo 'スペシャルダイビング';
-                  }
-              echo '</h3>';
-              echo '<dl class="price__dl">';
-              if(!empty($price_order['price1']) && !empty($content_order['content1'])){
-                echo '<div class="price__wrap">';
-                echo '<dt class="price__text">';
-                echo $content_order['content1'];
-                echo '</dt>';
-                echo '<dd class="price__value">';
-                echo  $price_order['price1'];
-                echo '</dd>';
-                echo '</div>';
-                }
-                if(!empty($price_order['price2']) && !empty($content_order['content2'])){
-                  echo '<div class="price__wrap">';
-                  echo '<dt class="price__text">';
-                  echo $content_order['content2'];
-                  echo '</dt>';
-                  echo '<dd class="price__value">';
-                  echo  $price_order['price2'];
-                  echo '</dd>';
-                  echo '</div>';
-                  }
-                  if(!empty($price_order['price3']) && !empty($content_order['content3'])){
-                    echo '<div class="price__wrap">';
-                    echo '<dt class="price__text">';
-                    echo $content_order['content3'];
-                    echo '</dt>';
-                    echo '<dd class="price__value">';
-                    echo  $price_order['price3'];
-                    echo '</dd>';
-                    echo '</div>';
-                    }
-                    if(!empty($price_order['price4']) && !empty($content_order['content4'])){
-                      echo '<div class="price__wrap">';
-                      echo '<dt class="price__text">';
-                      echo $content_order['content4'];
-                      echo '</dt>';
-                      echo '<dd class="price__value">';
-                      echo  $price_order['price4'];
-                      echo '</dd>';
-                      echo '</div>';
-                      }
-              echo '</dl>';
-              echo '</div>';
-           }
-          ?>  
-          <?php endwhile; ?>
-          <?php wp_reset_postdata(); ?>
-          <?php endif; ?>  
+          $args_price = array(
+            'post_type' => 'page',
+            'name' => 'price', 
+          );
+          $sub_query_price = new WP_Query($args_price);
+          ?>
+            <?php if($sub_query_price-> have_posts()): ?>
+            <?php while($sub_query_price-> have_posts()):$sub_query_price-> the_post(); ?>
+            <?php 
+              $titles=SCF::get('title');
+              $prices=SCF::get('prices');
+              $contents=SCF::get('contents');
+            ?>
+            <?php foreach ($titles as $title):?>
+              <?php  
+              $key = array_search($title, $titles); 
+              $price_divide = explode("、", $prices[$key]);
+              $content_divide = explode("、", $contents[$key]);
+            ?>
+            <?php  if(!empty($title)):?>
+                <div  class="price__textes">
+                <?php $big_game=0; ?>
+                <?php foreach ($price_divide as $index => $price):?>
+                  <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+                    <h3 class="price__topic"><?php echo $title; ?></h3>
+                  <?php  
+                  $big_game=1;
+                  break;
+                  ?>
+                  <?endif;?>
+                <?php endforeach; ?>
+                <?php if($big_game): ?>
+                  <dl class="prce__dl">
+                    <?php foreach ($price_divide as $index => $price):?>
+                      <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+                        <div class="price__wrap">
+                          <dt class="price__text"><?php echo $content_divide[$index]?></dt>
+                          <dd class="price__value"><?php echo $price?></dd>
+                        </div>
+                      <?endif;?>
+                    <?php endforeach; ?>
+                  </dl>
+                <?endif;?>
+                </div>
+              <?endif;?>
+              <?php endforeach; ?>
+            <?php endwhile; ?>
+            <?php wp_reset_postdata(); ?>
+            <?php endif; ?>  
         </div>
       </div>
       <div class="price__btn">

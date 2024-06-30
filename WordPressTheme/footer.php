@@ -15,7 +15,7 @@
   $fandiving=esc_url(home_url('/campaign_category/fandiving/'));
   $experienced_diving=esc_url(home_url('campaign_category/experienced-diving/'));
   ?> 
-  <?php if(!is_page('contact')): ?>
+  <?php if(!is_page('contact') && !is_404()): ?>
   <section class="contact layout-contact">
     <div class="contact__inner inner">
       <div class="contact__maininner">
@@ -54,7 +54,7 @@
     </div>
   </section>
   <?php endif;?>
-  <footer class="footer layout-footer">
+  <footer class="footer <?php if (is_404()) { echo 'layout-footer--footer'; } else { echo 'layout-footer'; } ?>">
     <div class="footer__inner inner">
       <div class="footer__head">
         <a href="<?php echo $top; ?>" class="footer__logo">

@@ -89,10 +89,9 @@
      }
 }
 
-.footer.footer--error{
-    padding-top: rem(128);
-    // height: 100vh;
-    @include mq("md"){ padding-top: rem(165);}
-}
+// .footer.footer--error{
+//     padding-top: rem(128);
+//     @include mq("md"){ padding-top: rem(165);}
+// }
 
 

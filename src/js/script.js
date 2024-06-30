@@ -185,7 +185,7 @@ jQuery(function ($) {
 
 // toggle triangle
 jQuery(function ($) {
-  $('.js-two-colums__year').on('click', function () {
+  $('.js-sidebar__year').on('click', function () {
     $(this).toggleClass('is-active');
     $(this).find('.archive-block__content').slideToggle(); 
 

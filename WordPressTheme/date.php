@@ -10,11 +10,7 @@
   </section>
   <div class="breadcrumb layout-breadcrumb">
     <div class="breadcrumb__inner inner">
-      <?php
-      if (function_exists('bcn_display')) {
-        bcn_display();
-      }
-      ?>
+    <?php get_template_part( 'template-parts/bread' ); ?>
     </div>
   </div>
   <section class="two-colums layout-two-colums">
@@ -32,11 +28,10 @@
             <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/blog1.jpg" alt="no image">
             <?php endif;?> 
             </div>
-            <div class="blog-card__date"><?php the_time('Y年m月d日'); ?></div>
+            <time datetime="<?php the_time('c'); ?>" class="blog-card__date"><?php the_time('Y年m月d日'); ?></time>
             <h2 class="blog-card__tittle"><?php the_title(); ?></h2>
             <p class="blog-card__text">
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br>
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキスト
+              <?php echo wp_trim_words( get_the_content(), 100, '...' ); ?>  
             </p>
           </a>
         <?php endwhile; ?>

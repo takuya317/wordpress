@@ -10,11 +10,7 @@
   </section>
   <div class="breadcrumb layout-breadcrumb">
     <div class="breadcrumb__inner inner">
-     <?php
-      if (function_exists('bcn_display')) {
-        bcn_display();
-      }
-      ?>
+    <?php get_template_part( 'template-parts/bread' ); ?>
     </div>
   </div>
   <section class="terms-of-service layout-terms-of-service">

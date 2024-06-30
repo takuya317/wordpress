@@ -16,3 +16,11 @@
     margin-top: rem(142);
     @include mq("md"){ margin-top: rem(115);}
 }
+
+.layout-footer--footer{
+    margin-top: rem(105);
+
+    @include mq("md"){
+        margin-top: rem(90);
+    }
+}

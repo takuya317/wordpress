@@ -2,20 +2,20 @@
 
 
 
-.two-colums__campaign-cards{
+// .two-colums__campaign-cards{
    
-    margin-top: rem(28);
-    @include mq("md"){ 
-        margin-top: rem(24); 
+//     margin-top: rem(28);
+//     @include mq("md"){ 
+//         margin-top: rem(24); 
        
-    }
-}
+//     }
+// }
 
 
-.two-colums__items{
+// .two-colums__items{
 
-    margin-top: rem(24);
-}
+//     margin-top: rem(24);
+// }
 
 
 
@@ -107,26 +107,26 @@
 //     vertical-align: top;
 // }
 
-.two-colums__kutikomi{
-    margin-top: rem(80);
-    text-align: center;
-    @include mq("md"){
-    margin-top: rem(80);
-    }
-}
+// .two-colums__kutikomi{
+//     margin-top: rem(80);
+//     text-align: center;
+//     @include mq("md"){
+//     margin-top: rem(80);
+//     }
+// }
 
-.two-colums__kutikomi-img{
-    margin-top: rem(24);
+// .two-colums__kutikomi-img{
+//     margin-top: rem(24);
    
-}
+// }
 
-.two-colums__head{
-    text-align: left;
-}
+// .two-colums__head{
+//     text-align: left;
+// }
 
-.two-colums__year:nth-of-type(1){
-    margin-top: rem(20);
-}
+// .two-colums__year:nth-of-type(1){
+//     margin-top: rem(20);
+// }
 
 
 // .two-colums__age{
@@ -157,52 +157,52 @@
 
 // }
 
-.two-colums__campaign{
-    margin-top: rem(82);
-    text-align: center;
-    @include mq("md"){
-    margin-top: rem(84);
-    }
+// .two-colums__campaign{
+//     margin-top: rem(82);
+//     text-align: center;
+//     @include mq("md"){
+//     margin-top: rem(84);
+//     }
 
-}
+// }
 
-.two-colums__archive{
-    margin-top: rem(86);
-}
+// .two-colums__archive{
+//     margin-top: rem(86);
+// }
 
-.two-colums__year{
-    color: var(--greenaccent, #408F95);
-    font-family: "Noto Sans JP";
-    font-size: rem(24);
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    position: relative;
-    padding-left: rem(32);
+// .two-colums__year{
+//     color: var(--greenaccent, #408F95);
+//     font-family: "Noto Sans JP";
+//     font-size: rem(24);
+//     font-style: normal;
+//     font-weight: 400;
+//     line-height: normal;
+//     position: relative;
+//     padding-left: rem(32);
 
-}
+// }
 
-.two-colums__year::before{
-    background-image: url(../images/common/sankaku1.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    content: "";
-    display: inline-block;
-    height: 1.5rem;
-    left: 0.3%;
-    position: absolute;
-    top: 7%;
+// .two-colums__year::before{
+//     background-image: url(../images/common/sankaku1.png);
+//     background-position: center center;
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     content: "";
+//     display: inline-block;
+//     height: 1.5rem;
+//     left: 0.3%;
+//     position: absolute;
+//     top: 7%;
    
-    width: 1.5rem;
-}
+//     width: 1.5rem;
+// }
 
-.two-colums__year.is-active::before{
-    background-image: url(../images/common/sankaku2.png);
+// .two-colums__year.is-active::before{
+//     background-image: url(../images/common/sankaku2.png);
     
   
     
-}
+// }
 
 .two-colums__content.is-active{
     display: none;

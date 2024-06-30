@@ -32,6 +32,11 @@
     @include mq("md"){margin-top: rem(40);}
 }
 
+.singleblog-card__content img{
+    margin-top: rem(24);
+    @include mq("md"){margin-top: rem(40);}
+}
+
 .singleblog-card__imgbig{
     aspect-ratio: 700/468;
     margin-top: rem(24);

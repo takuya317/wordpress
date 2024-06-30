@@ -18,21 +18,24 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
   </section>
   <div class="breadcrumb layout-breadcrumb">
     <div class="breadcrumb__inner inner">
-      <?php
-      if (function_exists('bcn_display')) {
-        bcn_display();
-      }
-      ?>
+    <?php get_template_part( 'template-parts/bread' ); ?> 
     </div>
   </div>
+  <?php 
+    $campaign_current_term =  get_queried_object();
+    
+    $campaign_terms = get_terms('campaign_category', array('hide_empty' => false));
+  ?>
   <section class="campaign-page layout-campaign-page">
     <div class="common-fish"></div>
     <div class="campaign-page__inner inner">
       <ul class="campaign-page__tab tab">
         <li class="tab__item is-active"><a href="<?php echo $campaign; ?>">ALL</a></li>
-        <li class="tab__item"><a href="<?php echo $campaign_license; ?>">ライセンス講習</a></li>
-        <li class="tab__item"><a href="<?php echo $campaign_fandiving; ?>">ファンダイビング</a></li>
-        <li class="tab__item"><a href="<?php echo $campaign_experienced_diving; ?>">体験ダイビング</a></li>
+        <?php  
+        foreach ($campaign_terms as $campaign_term) :
+        ?>
+        <li class="tab__item<?php echo ($campaign_term->name == $campaign_current_term->name) ? ' is-active' : ''; ?>"><a href="<?php echo esc_url(get_term_link($campaign_term)); ?>"><?php echo $campaign_term->name ?></a></li>
+        <?php endforeach; ?>
       </ul> 
     <div class="campaign-page__cards cards">
     <?php if(have_posts()): ?>
@@ -46,13 +49,20 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
           <?php endif;?> 
         </div>
         <div class="sub-campaign-card__inner">
-          <?php
-            $terms = get_the_terms(get_the_ID(), 'campaign_category');
-            if ($terms) {
-                foreach ($terms as $term) {
-                    echo '<p class="sub-campaign-card__topic">' . $term->name . '</p>';
-                    }
-              }
+          <?php $terms = get_the_terms(get_the_ID(), 'campaign_category'); ?>
+          <?php if ($terms):  ?>
+                <?php foreach ($terms as $term):  ?>
+                   <p class="campaign-card__topic"><?php  echo $term->name  ?></p>
+                <?php endforeach; ?>
+              <?php endif; ?>
+          <?php 
+          $campaign_time1=get_field('time1');
+          $campaign_time1_stamp=strtotime($campaign_time1);
+          $campaign_time1_month=date('Y',$campaign_time1_stamp);
+          $campaign_time2=get_field('time2');
+          $campaign_time2_stamp=strtotime($campaign_time2);
+          $campaign_time2_month=date('Y',$campaign_time2_stamp);
+          $campaign_time2_change=date('n/j',$campaign_time2_stamp);
           ?>
           <h2 class="sub-campaign-card__tittle"><?php the_title(); ?></h2>
           <p class="sub-campaign-card__text">全部コミコミ(お一人様)</p>
@@ -61,10 +71,17 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
             <span class="sub-campaign-card__trueprice"><?php the_field('price_2'); ?></span>
           </div>
           <p class="sub-campaign-card__sentence">
-            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br>
-            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキスト
+            <?php the_content(); ?>
           </p>
-          <p class="sub-campaign-card__date">2023/6/1-9/30</p>
+          <time datetime="<?php echo $campaign_time1 ?>" class="sub-campaign-card__date">
+            <?php if($campaign_time2_stamp > $campaign_time1_stamp): ?>
+              <?php if($campaign_time1_month == $campaign_time2_month): ?>
+                <?php  echo $campaign_time1 ;?>-<?php  echo $campaign_time2_change ;?>
+              <?php else: ?>
+              <?php  echo $campaign_time1 ;?>-<?php  echo $campaign_time2 ;?>
+              <?php endif; ?>
+            <?php endif; ?>
+          </time>
           <p class="sub-campaign-card__reservation">ご予約・お問い合わせはコチラ</p>
           <div class="sub-campaign-card__btn">
             <a href="<?php echo $contact; ?>" class="btn">          
@@ -79,6 +96,6 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
       <div class="campaign-page__pagenation pagenation">
       <div class="pagenation__number">
       <?php wp_pagenavi(); ?>
-      </div>
+    </div>
   </section>
 <?php get_footer(); ?>

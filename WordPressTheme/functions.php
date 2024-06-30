@@ -54,7 +54,8 @@ add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
   }
   add_action( 'pre_get_posts', 'custom_taxonomy_archive_display1' );
 
-	add_theme_support('post-thumbnails');
+	
+
 
 /* 「投稿」ラベル変更 */
 function change_post_menu_label() {
@@ -82,7 +83,6 @@ function change_post_menu_label() {
  }
  add_action( 'init', 'change_post_object_label' );
  add_action( 'admin_menu', 'change_post_menu_label' );
-
 
 
 
@@ -127,3 +127,4 @@ function test_selectlist( $tag, $unused ){
 //add_filter()で項目を上書きするニュアンス
 add_filter( 'wpcf7_form_tag', 'test_selectlist', 10, 2 );
 
+add_theme_support('post-thumbnails');

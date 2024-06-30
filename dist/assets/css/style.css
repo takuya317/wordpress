@@ -201,6 +201,10 @@ a {
 	margin-top: 8.875rem;
 }
 
+.layout-footer--footer {
+	margin-top: 6.5625rem;
+}
+
 .layout-gallery {
 	margin-top: 2.125rem;
 }
@@ -1552,10 +1556,6 @@ a {
 	margin-top: 1rem;
 }
 
-.footer.footer--error {
-	padding-top: 8rem;
-}
-
 .gallery {
 	text-align: center;
 }
@@ -2901,6 +2901,70 @@ a {
 	text-transform: uppercase;
 }
 
+.sidebar__head {
+	text-align: left;
+}
+
+.sidebar__items {
+	margin-top: 1.5rem;
+}
+
+.sidebar__kutikomi {
+	margin-top: 5rem;
+	text-align: center;
+}
+
+.sidebar__kutikomi-img {
+	margin-top: 1.5rem;
+}
+
+.sidebar__campaign {
+	margin-top: 5.125rem;
+	text-align: center;
+}
+
+.sidebar__campaign-cards {
+	margin-top: 1.75rem;
+}
+
+.sidebar__archive {
+	margin-top: 5.375rem;
+}
+
+.sidebar__year:nth-of-type(1) {
+	margin-top: 1.25rem;
+}
+
+.sidebar__year {
+	color: #408F95;
+	color: var(--greenaccent, #408F95);
+	font-family: "Noto Sans JP";
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	padding-left: 2rem;
+	position: relative;
+}
+
+.sidebar__year::before {
+	background-image: url(../images/common/sankaku1.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	content: "";
+	display: inline-block;
+	height: 1.5rem;
+	left: 0.3%;
+	position: absolute;
+	top: 7%;
+	width: 1.5rem;
+}
+
+.sidebar__year.is-active::before {
+	background-image: url(../images/common/sankaku2.png);
+}
+
 .singleblog-card__tittle {
 	border-bottom: 0.0625rem solid #408F95;
 	border-bottom: 0.0625rem solid var(--greenaccent, #408F95);
@@ -2929,6 +2993,10 @@ a {
 }
 
 .singleblog-card__content div {
+	margin-top: 1.5rem;
+}
+
+.singleblog-card__content img {
 	margin-top: 1.5rem;
 }
 
@@ -3512,14 +3580,6 @@ a {
 	gap: 2.5rem;
 }
 
-.two-colums__campaign-cards {
-	margin-top: 1.75rem;
-}
-
-.two-colums__items {
-	margin-top: 1.5rem;
-}
-
 .two-colums__inner,
 .two-colums__inner--single {
 	position: relative;
@@ -3538,62 +3598,6 @@ a {
 	margin-top: 4.875rem;
 	padding-left: 1.5625rem;
 	padding-right: 1.5625rem;
-}
-
-.two-colums__kutikomi {
-	margin-top: 5rem;
-	text-align: center;
-}
-
-.two-colums__kutikomi-img {
-	margin-top: 1.5rem;
-}
-
-.two-colums__head {
-	text-align: left;
-}
-
-.two-colums__year:nth-of-type(1) {
-	margin-top: 1.25rem;
-}
-
-.two-colums__campaign {
-	margin-top: 5.125rem;
-	text-align: center;
-}
-
-.two-colums__archive {
-	margin-top: 5.375rem;
-}
-
-.two-colums__year {
-	color: #408F95;
-	color: var(--greenaccent, #408F95);
-	font-family: "Noto Sans JP";
-	font-size: 1.5rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	padding-left: 2rem;
-	position: relative;
-}
-
-.two-colums__year::before {
-	background-image: url(../images/common/sankaku1.png);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	content: "";
-	display: inline-block;
-	height: 1.5rem;
-	left: 0.3%;
-	position: absolute;
-	top: 7%;
-	width: 1.5rem;
-}
-
-.two-colums__year.is-active::before {
-	background-image: url(../images/common/sankaku2.png);
 }
 
 .two-colums__content.is-active {
@@ -3849,6 +3853,10 @@ html {
 
 .layout-footer.layout-footer--thanks {
 	margin-top: 7.1875rem;
+}
+
+.layout-footer--footer {
+	margin-top: 5.625rem;
 }
 
 .layout-gallery {
@@ -4489,10 +4497,6 @@ html {
 	margin-top: 0rem;
 }
 
-.footer.footer--error {
-	padding-top: 10.3125rem;
-}
-
 .gallery__container {
 	margin-top: 5rem;
 }
@@ -4939,11 +4943,27 @@ html {
 	color: #FFF;
 }
 
+.sidebar__kutikomi {
+	margin-top: 5rem;
+}
+
+.sidebar__campaign {
+	margin-top: 5.25rem;
+}
+
+.sidebar__campaign-cards {
+	margin-top: 1.5rem;
+}
+
 .singleblog-card__tittle {
 	font-size: 2rem;
 }
 
 .singleblog-card__content div {
+	margin-top: 2.5rem;
+}
+
+.singleblog-card__content img {
 	margin-top: 2.5rem;
 }
 
@@ -5218,10 +5238,6 @@ html {
 	gap: 2.75rem;
 }
 
-.two-colums__campaign-cards {
-	margin-top: 1.5rem;
-}
-
 .two-colums__inner,
 .two-colums__inner--single {
 	display: flex;
@@ -5242,14 +5258,6 @@ html {
 	padding-left: 0;
 	padding-right: 0;
 	width: 27.222%;
-}
-
-.two-colums__kutikomi {
-	margin-top: 5rem;
-}
-
-.two-colums__campaign {
-	margin-top: 5.25rem;
 }
 
 .two-colums__left {
