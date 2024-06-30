@@ -18,6 +18,7 @@ function add_custom_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
 
+
     function change_set_campaign($query) {
         if ( is_admin() || ! $query->is_main_query() ){
             return;
@@ -80,6 +81,7 @@ function change_post_menu_label() {
   $labels->search_items = $name.'を検索';
   $labels->not_found = $name.'が見つかりませんでした';
   $labels->not_found_in_trash = 'ゴミ箱に'.$name.'は見つかりませんでした';
+  
  }
  add_action( 'init', 'change_post_object_label' );
  add_action( 'admin_menu', 'change_post_menu_label' );
@@ -127,4 +129,10 @@ function test_selectlist( $tag, $unused ){
 //add_filter()で項目を上書きするニュアンス
 add_filter( 'wpcf7_form_tag', 'test_selectlist', 10, 2 );
 
+
+
 add_theme_support('post-thumbnails');
+
+
+
+
