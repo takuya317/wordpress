@@ -133,6 +133,10 @@ add_filter( 'wpcf7_form_tag', 'test_selectlist', 10, 2 );
 
 add_theme_support('post-thumbnails');
 
-
+function enable_post_thumbnails_for_custom_post_types() {
+    add_post_type_support('campaign', 'thumbnail');
+    add_post_type_support('voice', 'thumbnail');
+  }
+  add_action('init', 'enable_post_thumbnails_for_custom_post_types');
 
 
