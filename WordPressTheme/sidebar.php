@@ -4,8 +4,6 @@
   $voice=esc_url(home_url('/voice/'));
   $date=esc_url(home_url('/voice/'));
   ?> 
-
-
   <aside class="sidebar two-colums__right">
     <div class="sidebar__container">
       <h2 class="sidebar__head head">人気記事</h2>
@@ -110,16 +108,13 @@
       </div>
       <?php 
       global $wpdb;
-
       $results = $wpdb->get_results("
           SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
           FROM $wpdb->posts
           WHERE post_type = 'post' AND post_status = 'publish'
           ORDER BY year DESC, month DESC
-      ");
-             
+      ");     
       ?>
-
       <div class="sidebar__archive">
         <h2 class="sidebar__head head">アーカイブ</h2>
         <?php if(!empty($results)) :?>
@@ -128,13 +123,13 @@
             <?php foreach($results as $result) : ?>  
               <?php $year= $result ->year; ?>
               <?php if($year == $previous_year): ?>
-                <div class="sidebar__year js-sidebar__year archive-block">
+                <div class="sidebar__year js-sidebar__year archive-block ">
                   <p><?php echo $year ;?></p>
-                  <ul class="archive-block__content  is-active">
+                  <ul class="archive-block__content  ">
                   <?php break; ?>
               <?php endif; ?>
             <?php endforeach; ?>
-            <!-- ここが本番のループ -->
+            <!-- この下が日付のループ -->
             <?php foreach($results as $result) : ?>
               <?php $year= $result ->year; ?>
               <?php if($year == $previous_year): ?>
