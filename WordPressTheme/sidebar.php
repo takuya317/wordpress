@@ -108,24 +108,44 @@
           </a>
         </div>
       </div>
+      <?php 
+      global $wpdb;
+
+      $results = $wpdb->get_results("
+          SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
+          FROM $wpdb->posts
+          WHERE post_type = 'post' AND post_status = 'publish'
+          ORDER BY year DESC, month DESC
+      ");
+             
+      ?>
+
       <div class="sidebar__archive">
         <h2 class="sidebar__head head">アーカイブ</h2>
-        <div class="sidebar__year js-sidebar__year archive-block">
-          <a href="http://codeupswp.local/2023/">2023</a>
-          <ul class="archive-block__content">
-            <li class="archive-block__month"><a href="http://codeupswp.local/2023/03/">3月</a></li>
-            <li class="archive-block__month"><a href="http://codeupswp.local/2023/02/">2月</a></li>
-            <li class="archive-block__month"><a href="http://codeupswp.local/2023/01/">1月</a></li>
-          </ul>
-        </div>
-        <div class="sidebar__year js-sidebar__year is-active archive-block">
-          <a href="http://codeupswp.local/2022/">2022</a>
-          <ul class="archive-block__content  is-active">
-            <li class="archive-block__month"><a href="http://codeupswp.local/2022/03/">3月</a></li>
-            <li class="archive-block__month"><a href="http://codeupswp.local/2022/02/">2月</a></li>
-            <li class="archive-block__month"><a href="http://codeupswp.local/2022/01/">1月</a></li>
-          </ul>
-        </div>
+        <?php if(!empty($results)) :?>
+          <?php  $previous_year = $results[0]->year; ?>
+          <?php foreach($results as $result) : ?>  
+            <?php foreach($results as $result) : ?>  
+              <?php $year= $result ->year; ?>
+              <?php if($year == $previous_year): ?>
+                <div class="sidebar__year js-sidebar__year archive-block">
+                  <p><?php echo $year ;?></p>
+                  <ul class="archive-block__content  is-active">
+                  <?php break; ?>
+              <?php endif; ?>
+            <?php endforeach; ?>
+            <!-- ここが本番のループ -->
+            <?php foreach($results as $result) : ?>
+              <?php $year= $result ->year; ?>
+              <?php if($year == $previous_year): ?>
+                <li class="archive-block__month"><a href="<?php echo get_year_link($result->year) . $result->month; ?>"><?php echo $result -> month; ?>月</a></li>
+              <?php endif; ?>
+            <?php endforeach; ?>
+                  </ul>
+                </div>
+            <?php $previous_year = $previous_year -1; ?>
+          <?php endforeach; ?>
+        <?php endif; ?>
       </div>
     </div>
   </aside>  
