@@ -28,9 +28,7 @@ $voice_experienced_diving=esc_url(home_url('/voice_category/experienced-diving/'
     <div class="voice-page__inner inner">  
       <ul class="voice-page__tab tab">
         <li class="tab__item"><a href="<?php echo $voice; ?>">ALL</a></li>
-        <?php  
-        foreach ($voice_terms as $voice_term) :
-        ?>
+        <?php  foreach ($voice_terms as $voice_term) :?>
         <li class="tab__item<?php echo ($voice_term->name == $voice_current_term->name) ? ' is-active' : ''; ?>"><a href="<?php echo esc_url(get_term_link($voice_term)); ?>"><?php echo $voice_term->name ?></a></li>
         <?php endforeach; ?>
       </ul> 
@@ -41,7 +39,9 @@ $voice_experienced_diving=esc_url(home_url('/voice_category/experienced-diving/'
           <div class="voice-card__wrapper">
             <div class="voice-card__inner">
               <div class="voice-card__textes">
+                <?php if(get_field('age')): ?>
                 <p class="voice-card__text1"><?php the_field('age'); ?></p>
+                <?php endif; ?>
                   <?php $voice_terms = get_the_terms(get_the_ID(), 'voice_category'); ?>
                   <?php if ($voice_terms):  ?>
                     <?php foreach ($voice_terms as $term):  ?>

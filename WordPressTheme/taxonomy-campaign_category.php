@@ -29,9 +29,7 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
     <div class="campaign-page__inner inner">
       <ul class="campaign-page__tab tab">
         <li class="tab__item"><a href="<?php echo $campaign; ?>">ALL</a></li>
-        <?php  
-        foreach ($campaign_terms as $campaign_term) :
-        ?>
+        <?php  foreach ($campaign_terms as $campaign_term) :?>
         <li class="tab__item<?php echo ($campaign_term->name == $campaign_current_term->name) ? ' is-active' : ''; ?>"><a href="<?php echo esc_url(get_term_link($campaign_term)); ?>"><?php echo $campaign_term->name ?></a></li>
         <?php endforeach; ?>
       </ul> 
@@ -65,8 +63,12 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
                 <h2 class="sub-campaign-card__tittle"><?php the_title(); ?></h2>
                 <p class="sub-campaign-card__text">全部コミコミ(お一人様)</p>
                 <div class="sub-campaign-card__wrap">
+                    <?php if(get_field('price_1')): ?>
                     <span class="sub-campaign-card__falseprice"><?php the_field('price_1'); ?></span>
+                    <?php endif; ?>
+                    <?php if(get_field('price_2')): ?>
                     <span class="sub-campaign-card__trueprice"><?php the_field('price_2'); ?></span>
+                    <?php endif; ?>
                 </div>
                 <p class="sub-campaign-card__sentence">
                 <?php the_content(); ?>

@@ -34,6 +34,8 @@
       </div>
     </div>
   </section>
+  <?php $imges = SCF::get('img');?>
+  <?php if(get_field('img')): ?>
   <section class="gallery layout-gallery">
     <div class="gallery__inner inner">
       <div class="gallery__tittle section-header">
@@ -44,7 +46,6 @@
         <div class="gallery__items">
         <?php if(have_posts()): ?>
         <?php while(have_posts()):the_post(); ?>       
-          <?php $imges = SCF::get('img');?>
           <?php foreach ($imges as $img): ?>
             <?php $img_url=wp_get_attachment_url($img); ?>
             <?php if($img): ?>
@@ -60,4 +61,5 @@
       <div class="gallery__img"><img src="<?php echo $img_url ?>" alt=""></div>
     </div>
   </section>
+  <?php endif; ?>
 <?php get_footer(); ?>

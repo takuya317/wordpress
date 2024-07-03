@@ -33,8 +33,8 @@
             <?php the_content(); ?>
           </div>
         </div>
-        <?php endwhile; ?>
-          <?php endif; ?>  
+            <?php endwhile; ?>
+        <?php endif; ?>  
         <div class="two-colums__pagenation pagenation pagenation--detail">
         <?php
         $prev_post = get_adjacent_post( true, '', true );

@@ -54,7 +54,9 @@
           <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/voice2.jpg" alt="no image">
           <?php endif;?> 
         </figure>
+        <?php if(get_field('age')): ?>
         <div class="kutikomi-card__age"><?php the_field('age'); ?></div>
+        <?php endif;?> 
         <p class="kutikomi-card__tittle"><?php the_title(); ?></p>
         <div class="kutikomi-card__btn">
           <a href="<?php echo $voice; ?>" class="btn">          
@@ -91,8 +93,12 @@
                 全部コミコミ(お一人様)
               </p>
               <div class="two-colums-card__wrap">
+                <?php if(get_field('price_1')): ?>
                 <span class="two-colums-card__falseprice"><?php the_field('price_1'); ?></span>
+                <?php endif; ?>
+                <?php if(get_field('price_2')): ?>
                 <span class="two-colums-card__trueprice"><?php the_field('price_2'); ?></span>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -115,32 +121,32 @@
           ORDER BY year DESC, month DESC
       ");     
       ?>
-      <div class="sidebar__archive">
-        <h2 class="sidebar__head head">アーカイブ</h2>
-        <?php if(!empty($results)) :?>
-          <?php  $previous_year = $results[0]->year; ?>
-          <?php foreach($results as $result) : ?>  
+      <?php if(!empty($results)) :?>
+        <div class="sidebar__archive">
+          <h2 class="sidebar__head head">アーカイブ</h2>
+            <?php  $previous_year = $results[0]->year; ?>
             <?php foreach($results as $result) : ?>  
-              <?php $year= $result ->year; ?>
-              <?php if($year == $previous_year): ?>
-                <div class="sidebar__year js-sidebar__year archive-block ">
-                  <p><?php echo $year ;?></p>
-                  <ul class="archive-block__content  ">
-                  <?php break; ?>
-              <?php endif; ?>
+              <?php foreach($results as $result) : ?>  
+                <?php $year= $result ->year; ?>
+                <?php if($year == $previous_year): ?>
+                  <div class="sidebar__year js-sidebar__year archive-block ">
+                    <p><?php echo $year ;?></p>
+                    <ul class="archive-block__content  ">
+                    <?php break; ?>
+                <?php endif; ?>
+              <?php endforeach; ?>
+              <!-- この下が日付のループ -->
+              <?php foreach($results as $result) : ?>
+                <?php $year= $result ->year; ?>
+                <?php if($year == $previous_year): ?>
+                  <li class="archive-block__month"><a href="<?php echo get_year_link($result->year) . $result->month; ?>"><?php echo $result -> month; ?>月</a></li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+                    </ul>
+                  </div>
+              <?php $previous_year = $previous_year -1; ?>
             <?php endforeach; ?>
-            <!-- この下が日付のループ -->
-            <?php foreach($results as $result) : ?>
-              <?php $year= $result ->year; ?>
-              <?php if($year == $previous_year): ?>
-                <li class="archive-block__month"><a href="<?php echo get_year_link($result->year) . $result->month; ?>"><?php echo $result -> month; ?>月</a></li>
-              <?php endif; ?>
-            <?php endforeach; ?>
-                  </ul>
-                </div>
-            <?php $previous_year = $previous_year -1; ?>
-          <?php endforeach; ?>
-        <?php endif; ?>
-      </div>
+        </div>
+      <?php endif; ?>
     </div>
   </aside>  

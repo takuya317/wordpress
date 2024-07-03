@@ -12,7 +12,6 @@
           $sp_img=SCF::get('sp_img');
           $sp_img_urls = array_map('wp_get_attachment_url', $sp_img);
         ?>
-  
 <?php get_header(); ?>
   <section class="mv">
     <div class="mv__inner">
@@ -95,8 +94,12 @@
               <p class="campaign-card__tittle"><?php the_title(); ?></p>
               <p class="campaign-card__text">全部コミコミ(お一人様)</p>
               <div class="campaign-card__wrap">
+                <?php if(get_field('price_1')): ?>
                 <span class="campaign-card__falseprice"><?php the_field('price_1'); ?></span>
+                <?php endif; ?>
+                <?php if(get_field('price_2')): ?>
                 <span class="campaign-card__trueprice"><?php the_field('price_2'); ?></span>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -230,7 +233,9 @@
           <div class="voice-card__wrapper">
             <div class="voice-card__inner">
               <div class="voice-card__textes">
+                <?php if(get_field('age')): ?>
                 <p class="voice-card__text1"><?php the_field('age'); ?></p>
+                <?php endif; ?>
                   <?php $voice_terms = get_the_terms(get_the_ID(), 'voice_category'); ?>
                   <?php if ($voice_terms):  ?>
                     <?php foreach ($voice_terms as $term):  ?>
