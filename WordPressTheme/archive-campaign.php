@@ -1,4 +1,3 @@
-<!-- テスト -->
 <?php get_header(); ?>
 <?php 
 $campaign=esc_url(home_url('/campaign/'));
@@ -23,7 +22,6 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
   </div>
   <?php 
     $campaign_current_term =  get_queried_object();
-    
     $campaign_terms = get_terms('campaign_category', array('hide_empty' => false));
   ?>
   <section class="campaign-page layout-campaign-page">
@@ -49,9 +47,9 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
         <div class="sub-campaign-card__inner">
           <?php $terms = get_the_terms(get_the_ID(), 'campaign_category'); ?>
           <?php if ($terms):  ?>
-                <?php foreach ($terms as $term):  ?>
-                   <p class="campaign-card__topic"><?php  echo $term->name  ?></p>
-                <?php endforeach; ?>
+            <?php foreach ($terms as $term):  ?>
+                <p class="campaign-card__topic"><?php  echo $term->name  ?></p>
+            <?php endforeach; ?>
           <?php endif; ?>
           <?php 
           $campaign_time1=get_field('time1');
@@ -72,9 +70,7 @@ $campaign_experienced_diving=esc_url(home_url('/campaign_category/experienced-di
             <span class="sub-campaign-card__trueprice"><?php the_field('price_2'); ?></span>
             <?php endif; ?>
           </div>
-          <p class="sub-campaign-card__sentence">
-            <?php the_content(); ?>
-          </p>
+          <p class="sub-campaign-card__sentence"><?php the_content(); ?></p>
           <time datetime="<?php echo $campaign_time1 ?>" class="sub-campaign-card__date">
             <?php if($campaign_time2_stamp > $campaign_time1_stamp): ?>
               <?php if($campaign_time1_month == $campaign_time2_month): ?>

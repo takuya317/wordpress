@@ -115,6 +115,14 @@
       </div>
     </div>
   </section>
+  <?php 
+          $args_aboutus = array(
+            'post_type' => 'page',
+            'name' => 'about-us', 
+          );
+          $sub_query_aboutus = new WP_Query($args_aboutus);
+  ?>
+
   <section class="about about-layout">
     <div class="about__inner inner">
       <div class="about__header section-header">
@@ -130,10 +138,14 @@
         </div>   
         <div class="about__container">
           <p class="about__head">Dive into<br>the Ocean</p>
-          <div class="about__wrapper">  
-            <p class="about__text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-              <br>ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキスト<span>が入ります。</span>
-            </p>              
+          <div class="about__wrapper"> 
+            <?php if($sub_query_aboutus-> have_posts()): ?>
+              <?php while($sub_query_aboutus-> have_posts()):$sub_query_aboutus-> the_post(); ?>
+              <?php $sub_query_aboutus_content= get_the_content();?>
+              <p class="about__text"><?php echo $sub_query_aboutus_content; ?></p>
+              <?php endwhile; ?>
+              <?php wp_reset_postdata(); ?>
+            <?php endif; ?>
             <div class="about__btn">
               <a href="<?php echo $about_us; ?>" class="btn">          
                 <span class="btn__arrow">view more</span>
@@ -301,10 +313,10 @@
               $content_divide = explode("、", $contents[$key]);
             ?>
             <?php  if(!empty($title)):?>
-                <div  class="price__textes">
-                <?php $big_game=0; ?>
-                <?php foreach ($price_divide as $index => $price):?>
-                  <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+              <?php $big_game=0; ?>
+              <?php foreach ($price_divide as $index => $price):?>
+                <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+                  <div  class="price__textes">
                     <h3 class="price__topic"><?php echo $title; ?></h3>
                   <?php  
                   $big_game=1;
@@ -323,8 +335,8 @@
                       <?endif;?>
                     <?php endforeach; ?>
                   </dl>
-                <?endif;?>
                 </div>
+                <?endif;?>
               <?endif;?>
               <?php endforeach; ?>
             <?php endwhile; ?>

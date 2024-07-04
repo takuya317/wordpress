@@ -15,9 +15,9 @@
   </div>
   <section class="page-price layout-page-price">
       <div class="page-price__inner inner common-fish">
-        <div class="page-price__items plice-boxes">
-          <?php if(have_posts()): ?>
-            <?php while(have_posts()):the_post(); ?>
+        <?php if(have_posts()): ?>
+          <?php while(have_posts()):the_post(); ?>
+          <div class="page-price__items plice-boxes">
             <?php 
               $titles=SCF::get('title');
               $prices=SCF::get('prices');
@@ -30,10 +30,10 @@
               $content_divide = explode("、", $contents[$key]);
               ?>
               <?php  if(!empty($title)):?>
-                <div class="plice-boxes__item plice-box">
                 <?php $big_game=0; ?>
                 <?php foreach ($price_divide as $index => $price):?>
                   <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+                    <div class="plice-boxes__item plice-box">
                     <div class="plice-box__green">
                       <div class="plice-box__wrap">
                         <h2 class="plice-box__topic"><?php echo $title?></h2>
@@ -57,13 +57,13 @@
                       <?endif;?>
                     <?php endforeach; ?>
                   </table>
+                  </div>
                 <?endif;?>
-                </div>
               <?endif;?>
             <?php endforeach; ?>
-          <?php endwhile; ?>
-          <?php endif; ?>  
-        </div>
+          </div>
+        <?php endwhile; ?>
+        <?php endif; ?>  
       </div>
   </section>
 <?php get_footer(); ?>

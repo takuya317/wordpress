@@ -33,7 +33,7 @@
                   <?php echo $answer[$key]; ?>
                 </p>
               </li>
-             <?php endif; ?>
+            <?php endif; ?>
           <?php endforeach; ?>      
         <?php endwhile; ?>
         <?php endif; ?>  

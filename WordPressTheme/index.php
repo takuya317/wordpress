@@ -12,7 +12,6 @@
           $sp_img=SCF::get('sp_img');
           $sp_img_urls = array_map('wp_get_attachment_url', $sp_img);
         ?>
-  
 <?php get_header(); ?>
   <section class="mv">
     <div class="mv__inner">
@@ -95,8 +94,12 @@
               <p class="campaign-card__tittle"><?php the_title(); ?></p>
               <p class="campaign-card__text">全部コミコミ(お一人様)</p>
               <div class="campaign-card__wrap">
+                <?php if(get_field('price_1')): ?>
                 <span class="campaign-card__falseprice"><?php the_field('price_1'); ?></span>
+                <?php endif; ?>
+                <?php if(get_field('price_2')): ?>
                 <span class="campaign-card__trueprice"><?php the_field('price_2'); ?></span>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -112,6 +115,14 @@
       </div>
     </div>
   </section>
+  <?php 
+          $args_aboutus = array(
+            'post_type' => 'page',
+            'name' => 'about-us', 
+          );
+          $sub_query_aboutus = new WP_Query($args_aboutus);
+  ?>
+
   <section class="about about-layout">
     <div class="about__inner inner">
       <div class="about__header section-header">
@@ -127,10 +138,14 @@
         </div>   
         <div class="about__container">
           <p class="about__head">Dive into<br>the Ocean</p>
-          <div class="about__wrapper">  
-            <p class="about__text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-              <br>ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキスト<span>が入ります。</span>
-            </p>              
+          <div class="about__wrapper"> 
+            <?php if($sub_query_aboutus-> have_posts()): ?>
+              <?php while($sub_query_aboutus-> have_posts()):$sub_query_aboutus-> the_post(); ?>
+              <?php $sub_query_aboutus_content= get_the_content();?>
+              <p class="about__text"><?php echo $sub_query_aboutus_content; ?></p>
+              <?php endwhile; ?>
+              <?php wp_reset_postdata(); ?>
+            <?php endif; ?>
             <div class="about__btn">
               <a href="<?php echo $about_us; ?>" class="btn">          
                 <span class="btn__arrow">view more</span>
@@ -230,7 +245,9 @@
           <div class="voice-card__wrapper">
             <div class="voice-card__inner">
               <div class="voice-card__textes">
+                <?php if(get_field('age')): ?>
                 <p class="voice-card__text1"><?php the_field('age'); ?></p>
+                <?php endif; ?>
                   <?php $voice_terms = get_the_terms(get_the_ID(), 'voice_category'); ?>
                   <?php if ($voice_terms):  ?>
                     <?php foreach ($voice_terms as $term):  ?>
@@ -296,10 +313,10 @@
               $content_divide = explode("、", $contents[$key]);
             ?>
             <?php  if(!empty($title)):?>
-                <div  class="price__textes">
-                <?php $big_game=0; ?>
-                <?php foreach ($price_divide as $index => $price):?>
-                  <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+              <?php $big_game=0; ?>
+              <?php foreach ($price_divide as $index => $price):?>
+                <?php if(!empty($price) && !empty($content_divide[$index])): ?>
+                  <div  class="price__textes">
                     <h3 class="price__topic"><?php echo $title; ?></h3>
                   <?php  
                   $big_game=1;
@@ -318,8 +335,8 @@
                       <?endif;?>
                     <?php endforeach; ?>
                   </dl>
-                <?endif;?>
                 </div>
+                <?endif;?>
               <?endif;?>
               <?php endforeach; ?>
             <?php endwhile; ?>

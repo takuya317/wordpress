@@ -24,8 +24,7 @@
         </div>   
         <div class="about-page__container">
           <p class="about-page__head">Dive into<br>the Ocean</p>         
-          <h2 class="about-page__text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-            <br>ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+          <h2 class="about-page__text"><?php the_content(); ?>
           </h2>                                 
         </div>
       </div>
